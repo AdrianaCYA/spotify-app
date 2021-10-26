@@ -1,0 +1,12 @@
+app
+    pages
+        home
+        playlist
+        login
+        token
+    layout
+        header
+        footer
+    shared
+        services
+            spotify
