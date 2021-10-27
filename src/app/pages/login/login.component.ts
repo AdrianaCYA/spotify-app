@@ -12,7 +12,7 @@ export class LoginComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    const url = `${environment.spotifyAccountUrl}?
+    const url = `${environment.spotifyAccountUrl}authorize?
 response_type=code
 &client_id=${environment.clientId}
 &redirect_uri=${environment.appUrl}/spotify`;

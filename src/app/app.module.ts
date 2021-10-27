@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -9,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { TokenComponent } from './pages/token/token.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { importType } from '@angular/compiler/src/output/output_ast';
 
 @NgModule({
   declarations: [
@@ -22,9 +24,10 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent]           
 })
 export class AppModule { }
