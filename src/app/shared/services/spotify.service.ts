@@ -8,25 +8,40 @@ import { environment } from 'src/environments/environment';
 })
 export class SpotifyService {
 
-  cliendId: string = "";
-  clientSecret: string = "";
+  constructor(private httpClient: HttpClient) { }
 
-  constructor(private httpclient: HttpClient) { }
+  setToken(token:string){
+    localStorage.setItem('token', token)
+  }
+  getToken(){
+    return localStorage.getItem('token');
+  }
 
-  getToken(code:string): Promise<any>{
+  generateToken(code:string): Promise<any>{
     const url = `${environment.spotifyAccountUrl}api/token`;
     const headers = new HttpHeaders({
       'Content-Type': 'application/x-www-form-urlencoded'
     });
 
     let params = new HttpParams();
-    params = params.append('grant_type', 'authorization_code');
-    params = params.append('code', code);
-    params = params.append('redirect_url', `${environment.appUrl}/spotify`);
-    params = params.append('client_id', environment.clientId);
-    params = params.append('client_secret', environment.clientSecret);
+    params = params.append('grant_type','authorization_code');
+    params = params.append('code',code);
+    params = params.append('redirect_uri',environment.appUrl + '/spotify');
+    params = params.append('client_id',environment.clientId);
+    params = params.append('client_secret',environment.clientSecret);
 
-    return this.httpclient.post(
-      url, params.toString(), {headers: headers}).toPromise();
+    return this.httpClient.post(url, params, {
+      headers: headers
+    }).toPromise();
   }
+
+  search(name: string, type:string): Promise<any>{
+    const url: string = `${environment.spotifyApi}search?q=${name}&type=${type}&limit=5`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.getToken()}`,
+      'Content-Type': 'application/json'
+    });
+    return this.httpClient.get(url,{headers: headers}).toPromise();
+  }
+
 }

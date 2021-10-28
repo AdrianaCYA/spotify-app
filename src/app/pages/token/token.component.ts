@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { SpotifyService } from './../../shared/services/spotify.service';
 
@@ -15,6 +15,7 @@ export class TokenComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private spotifyService: SpotifyService,
+    private router: Router
   ) {
     this.activatedRoute.queryParams.subscribe(params => {
       this.code = params.code;
@@ -26,9 +27,11 @@ export class TokenComponent implements OnInit {
   }
 
   getToken(){
-    this.spotifyService.getToken(this.code)
+    this.spotifyService.generateToken(this.code)
     .then(response => {
+      this.spotifyService.setToken(response.access_token);
       console.log('Response ', response);
+      this.router.navigate(['/']);
     })
     .catch(e => {
       console.log('Failed ', e);

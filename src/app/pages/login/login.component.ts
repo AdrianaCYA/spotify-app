@@ -9,6 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class LoginComponent implements OnInit {
 
+  buscar:string = '';
   constructor() { }
 
   ngOnInit(): void {
