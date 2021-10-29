@@ -1,16 +1,24 @@
-<input [(ngModel)]="buscar" type="text">
-<select [(ngModel)]="searchType">
-    <option value="artist">Artista</option>
-    <option value="album">Album</option>
-</select>
+<mat-form-field appearance="legacy">
+    <mat-label>Buscar</mat-label>
+    <input matInput [(ngModel)]="buscar" type="text">
+</mat-form-field>
 
-<button [disabled]="!buscar" (click)="searchItem()">Buscar</button>
+<mat-form-field appearance="legacy">
+    <mat-label>Tipo</mat-label>
+    <mat-select [(ngModel)]="searchType">
+        <mat-option value="artist">Artista</mat-option>
+        <mat-option value="album">Album</mat-option>
+    </mat-select>
+</mat-form-field>
+
+<button mat-raised-button color="primary" 
+    [disabled]="!buscar" (click)="searchItem()" >Buscar</button>
 
 <div *ngIf="resultados.length > 0">
     <h2>Resultados</h2>
     <ul>
         <li *ngFor="let item of resultados">
-            {{item.name}}
+            <a routerLink="/artists/{{item.id}}">{{item.name}}</a>
         </li>
     </ul>
 </div>

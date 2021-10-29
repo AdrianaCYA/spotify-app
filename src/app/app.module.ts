@@ -12,6 +12,9 @@ import { LoginComponent } from './pages/login/login.component';
 import { TokenComponent } from './pages/token/token.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { importType } from '@angular/compiler/src/output/output_ast';
+import { ArtistComponent } from './pages/artist/artist.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './modules/material/material.module';
 
 @NgModule({
   declarations: [
@@ -21,13 +24,16 @@ import { importType } from '@angular/compiler/src/output/output_ast';
     HomeComponent,
     LoginComponent,
     TokenComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ArtistComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]           

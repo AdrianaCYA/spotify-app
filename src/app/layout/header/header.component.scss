@@ -1,0 +1,21 @@
+$primaryColor: #4f6137;
+
+header{
+    height:80px;
+    background-color: lighten($primaryColor,50);
+    color: darken($primaryColor,50%);
+    box-sizing: border-box;
+
+    span{
+        font-size: 40px;
+        line-height: 80px;
+    }
+
+    a{
+        float: right;
+        line-height: 80px;
+        padding: 0px 20px;
+    }
+}
+
+

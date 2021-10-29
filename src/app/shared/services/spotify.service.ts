@@ -17,6 +17,13 @@ export class SpotifyService {
     return localStorage.getItem('token');
   }
 
+  getHeaders(){
+    return new HttpHeaders({
+      'Authorization': `Bearer ${this.getToken()}`,
+      'Content-Type': 'application/json'
+    });
+  }
+
   generateToken(code:string): Promise<any>{
     const url = `${environment.spotifyAccountUrl}api/token`;
     const headers = new HttpHeaders({
@@ -44,4 +51,21 @@ export class SpotifyService {
     return this.httpClient.get(url,{headers: headers}).toPromise();
   }
 
+  getArtist(artistId: string): Promise<any> {
+    const url: string = `${environment.spotifyApi}artists/${artistId}`;
+    const headers = this.getHeaders();
+    return this.httpClient.get(url,{headers}).toPromise();
+  }
+
+  getArtistAlbums(artistId: string): Promise<any>{
+    const url: string = `${environment.spotifyApi}artists/${artistId}/albums`;    
+    const headers = this.getHeaders();
+    return this.httpClient.get(url,{headers}).toPromise();
+  }
+
+  getArtistTopTracks(artistId: string): Promise<any>{
+    const url: string = `${environment.spotifyApi}artists/${artistId}/top-tracks`;    
+    const headers = this.getHeaders();
+    return this.httpClient.get(url,{headers}).toPromise();
+  }
 }
