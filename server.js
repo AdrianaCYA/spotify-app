@@ -10,7 +10,7 @@ app.use('', express.static(__dirname + '/dist/spotify-app'));
 
 //endpoints
 app.get('*', (req, res) => {
-    res.sendFile(__dirname + '/dist/spotify-app/index.html')
+    res.sendFile(__dirname + '/dist/spotify-app/index.html');
 });
 
 app.listen(port, () => {
